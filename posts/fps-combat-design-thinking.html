@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FPS 战斗设计思考：从射击手感说起">
+  <title>FPS 战斗设计思考 — Game Design Blog</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="site-logo">
+        <span class="logo-icon">🎮</span>
+        GameDesign Blog
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于我</a>
+        <a href="../blog.html" class="active">文章</a>
+        <a href="https://github.com/你的用户名" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <article class="post-page fade-in">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <span>2026 年 7 月 3 日</span>
+        <span>·</span>
+        <span>设计方法论</span>
+      </div>
+      <h1>FPS 战斗设计思考：从射击手感说起</h1>
+      <div class="post-tags">
+        <span>FPS</span>
+        <span>战斗设计</span>
+        <span>手感</span>
+        <span>方法论</span>
+      </div>
+    </header>
+
+    <div class="post-content">
+
+      <p>如果有两个词在游戏设计社区里被提到最多但又最说不清楚，那一定是<strong>"手感"</strong>。</p>
+
+      <p>你和策划同事聊，他说"这个枪的手感不对"；你问具体哪里不对，他说"就是……不对"。你和玩家聊，他说"这游戏射击手感好"；你问好在哪里，他说"就是……很舒服"。</p>
+
+      <p>手感看起来很玄学，但它其实是一系列<strong>可拆解、可度量、可设计</strong>的反馈元素的总和。这篇文章我想把"手感"这个词拆开，看看里面到底装了些什么。</p>
+
+      <h2>一、射击手感的四个层次</h2>
+
+      <p>我习惯把射击手感分为四个层次，从最基础到最上层：</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>层次</th>
+            <th>包含元素</th>
+            <th>影响</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>L1 - 输入响应</td>
+            <td>键鼠/手柄延迟、死区、灵敏度曲线</td>
+            <td>最基础的控制信任感</td>
+          </tr>
+          <tr>
+            <td>L2 - 武器行为</td>
+            <td>准星扩散、后坐力模式、弹道、射速节奏</td>
+            <td>武器差异化的核心</td>
+          </tr>
+          <tr>
+            <td>L3 - 命中反馈</td>
+            <td>命中标记、伤害数字、子弹冲击、音效、震动</td>
+            <td>射击满足感的直接来源</td>
+          </tr>
+          <tr>
+            <td>L4 - 战斗语境</td>
+            <td>TTK、交战距离、移动速度、技能交互</td>
+            <td>决定"手感"在实战中好不好</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>很多游戏只关注 L2 和 L3，但真正让一款射击游戏脱颖而出的，往往是 L1 的细腻程度和 L4 的系统性设计。</p>
+
+      <h2>二、准星系统：FPS 的 UI 灵魂</h2>
+
+      <p>准星是玩家在 FPS 游戏里交互最频繁的 UI 元素——它不是 UI，它是玩家在游戏世界里的"手"。</p>
+
+      <p>优秀的准星设计会考虑以下几点：</p>
+
+      <ul>
+        <li><strong>动态扩散</strong> — 移动、跳跃、射击时准星放大，停顿时恢复。这给了玩家一个"可视化的精度状态"</li>
+        <li><strong>命中标记</strong> — 击中时准星变色或收缩（如 Overwatch 的 X 标记提供即时的正反馈）</li>
+        <li><strong>对手的"软化"反馈</strong> — 准星划过敌人时的微妙变化（如 Apex 的准星变色），降低瞄准负担</li>
+        <li><strong>信息密度控制</strong> — 竞技游戏倾向于简洁准星（CS 的静态十字准星），而 PvE 游戏可以用更丰富的视觉反馈</li>
+      </ul>
+
+      <h2>三、后坐力：是阻力还是乐趣？</h2>
+
+      <p>后坐力是 FPS 射击手感中最微妙的元素。它本质上是对玩家精准度的<strong>阻力</strong>，但如果设计得好，它能变成一种<strong>技巧深度</strong>。</p>
+
+      <p>两种主要的后坐力设计哲学：</p>
+
+      <p><strong>固定弹道模式（CS、Valorant）</strong><br>
+      每一把枪的后坐力模式是固定的，可以靠肌肉记忆完全掌握。压枪变成了一个可练习的技巧——较高的学习门槛，但上限更高。CS 的 AK-47 第一发精准、第二发开始上扬、然后左右随机摆动，这种模式二十年没变过，因为它创造了一个巨大的技巧分层空间。</p>
+
+      <p><strong>随机散布圆（Battlefield、COD）</strong><br>
+      子弹在准星范围内随机散布，后坐力主要表现为准星抖动/上跳。这种设计降低了压枪的练习成本，把胜负更多地放在<strong>定位速度</strong>和<strong>交战决策</strong>上。更低的门槛，更快的上手。</p>
+
+      <p>没有哪种更好，只有哪种更适合你的目标玩家群体。</p>
+
+      <blockquote>
+        一个有趣的设计细节：COD 的枪在开镜后有一个极其短暂的"精度峰值"（大概 50-100ms），在此期间子弹是绝对精准的。这给高水平玩家创造了"瞬间开镜射击"的技巧空间，同时也让普通玩家在静止射击时感觉枪很稳。一石二鸟。
+      </blockquote>
+
+      <h2>四、命中反馈：射击的"触感"</h2>
+
+      <p>当子弹命中目标时，游戏需要通过多种通道同时告诉玩家一件事——"你打中了！"。</p>
+
+      <p>高质量的命中反馈是多通道同步的：</p>
+
+      <ul>
+        <li><strong>视觉</strong>：命中标记（十字准星变化）、伤害数字、血雾/火花特效</li>
+        <li><strong>听觉</strong>：命中音效（和击中墙壁有明确区分）、敌人受伤语音</li>
+        <li><strong>触觉</strong>：手柄震动、或者鼠标的轻微顿感（某些游戏通过动画扰动模拟"击中的阻力"）</li>
+        <li><strong>行为</strong>：敌人受击动画（后退/踉跄/硬直）——这是最被低估的反馈通道</li>
+      </ul>
+
+      <p>DOOM Eternal 在这方面堪称教科书。当你用超级霰弹枪击中恶魔时：屏幕震动、命中标记闪现、恶魔身体被打碎一块、血肉横飞的粒子特效、枪声和恶魔惨叫叠加、勾爪把自己拉向敌人……四五个反馈通道同时叠加，创造出极具冲击力的"爽感"。</p>
+
+      <h2>五、TTK 与战斗节奏</h2>
+
+      <p>TTK（Time to Kill，击杀时间）是决定射击游戏整体基调最重要的单一参数。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>TTK 类型</th>
+            <th>典型游戏</th>
+            <th>特点</th>
+            <th>设计影响</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>极短 (~0.2s)</td>
+            <td>CS、R6S</td>
+            <td>一枪爆头即死</td>
+            <td>高压力、强调预瞄和地图理解</td>
+          </tr>
+          <tr>
+            <td>短 (~0.5s)</td>
+            <td>COD、BF</td>
+            <td>几次命中即可击杀</td>
+            <td>快节奏、允许以多打少</td>
+          </tr>
+          <tr>
+            <td>中等 (~1s)</td>
+            <td>Apex、Halo</td>
+            <td>需要保持瞄准一段时间</td>
+            <td>允许技能反制、团队配合更重要</td>
+          </tr>
+          <tr>
+            <td>长 (&gt;1.5s)</td>
+            <td>Overwatch、Destiny PvP</td>
+            <td>需要持续输出</td>
+            <td>技能和走位空间大、偏向团队配合</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>TTK 决定了从"发现敌人"到"击杀敌人"之间的时间窗口里能发生什么。短 TTK 让先手优势极大（CS 里谁先看到谁赢），长 TTK 则给了后手方反应和反杀的空间（Overwatch 里被打了可以开技能跑路）。</p>
+
+      <p>没有绝对的好坏——但 TTK 必须和你的移动速度、地图尺寸、技能系统匹配。一个长 TTK + 低速移动 + 开阔地图的组合会让人感觉像在打移动靶，而不是在战斗。</p>
+
+      <h2>最后的话</h2>
+
+      <p>射击手感不是一个魔法词汇，它是<strong>几十个设计参数共同作用的结果</strong>。每个参数单独调整可能感觉不到什么变化，但它们叠在一起，就是玩家口中的"这游戏手感好/不好"。</p>
+
+      <p>做 FPS 的设计师，不应该满足于"调了一下感觉舒服了"——应该知道每一个参数为什么是这个值，以及调整它会如何影响其他系统。</p>
+
+      <p>下次你的同事说"手感不对"，你可以看着他手中的枪问：准星扩散速度调过了吗？命中延迟确认了吗？后坐力恢复速度呢？弹道散布角度呢？</p>
+
+      <p>😎</p>
+
+    </div>
+
+    <nav class="post-nav">
+      <a href="hello-world.html">← Hello World</a>
+      <a href="tps-cover-system-analysis.html">TPS 掩体系统拆解 →</a>
+    </nav>
+
+  </article>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="../index.html">首页</a>
+      <a href="../about.html">关于我</a>
+      <a href="../blog.html">文章</a>
+      <a href="https://github.com/你的用户名" target="_blank">GitHub</a>
+    </div>
+    <p>© 2026 Game Design Blog · 用 ❤️ 和 🎮 驱动</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

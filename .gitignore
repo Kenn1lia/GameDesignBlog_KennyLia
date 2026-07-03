@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python http server cache
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*

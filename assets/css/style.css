@@ -1,0 +1,653 @@
+/* ============================================
+   Game Design Blog — 暗色游戏策划主题
+   ============================================ */
+
+/* --- CSS Variables / 主题色 --- */
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2333;
+  --bg-hover: #252d3f;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #484f58;
+  --accent-orange: #f0883e;
+  --accent-cyan: #58a6ff;
+  --accent-green: #3fb950;
+  --accent-purple: #bc8cff;
+  --border-color: #30363d;
+  --border-accent: #f0883e;
+  --font-sans: 'Segoe UI', 'Noto Sans SC', -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --max-width: 860px;
+  --header-height: 64px;
+  --transition: 0.2s ease;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--accent-orange); }
+
+img { max-width: 100%; height: auto; }
+::selection { background: rgba(240, 136, 62, 0.3); color: #fff; }
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ============================================
+   HEADER / Navigation
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 17, 23, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  height: var(--header-height);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.site-logo:hover { color: var(--accent-orange); }
+.site-logo .logo-icon {
+  font-size: 1.4rem;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.main-nav a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all var(--transition);
+}
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+.main-nav a.active {
+  color: var(--accent-orange);
+  background: rgba(240, 136, 62, 0.1);
+}
+
+/* --- Mobile menu toggle --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ============================================
+   HERO SECTION (首页)
+   ============================================ */
+.hero {
+  padding: 80px 24px 60px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-orange);
+  margin-bottom: 24px;
+  object-fit: cover;
+  background: var(--bg-card);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .badge-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+.badge.fps { border-color: var(--accent-orange); color: var(--accent-orange); }
+.badge.tps { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.badge.design { border-color: var(--accent-purple); color: var(--accent-purple); }
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-page {
+  padding: 60px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.about-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.about-section {
+  margin-bottom: 40px;
+}
+
+.about-section h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--accent-orange);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-section p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 0.98rem;
+}
+
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.game-list li {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+  transition: all var(--transition);
+}
+.game-list li:hover {
+  border-color: var(--accent-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(240, 136, 62, 0.1);
+}
+.game-list .game-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+.game-list .game-tag {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   LAYOUT — Container
+   ============================================ */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+.page-header {
+  padding: 48px 24px 32px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.page-header .page-desc {
+  color: var(--text-secondary);
+  margin-top: 8px;
+  font-size: 1.05rem;
+}
+
+/* ============================================
+   BLOG CARDS
+   ============================================ */
+.blog-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.post-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all var(--transition);
+  cursor: default;
+}
+.post-card:hover {
+  border-color: var(--accent-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(240, 136, 62, 0.08);
+}
+
+.post-card .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.post-card .post-date {
+  color: var(--text-muted);
+}
+
+.post-card .post-category {
+  background: rgba(240, 136, 62, 0.12);
+  color: var(--accent-orange);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.post-card h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.post-card h2 a {
+  color: var(--text-primary);
+}
+.post-card h2 a:hover {
+  color: var(--accent-orange);
+}
+
+.post-card .post-excerpt {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.post-card .post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.post-card .post-tags span {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--bg-hover);
+  color: var(--text-muted);
+}
+
+/* --- Featured post (large card) --- */
+.post-card.featured {
+  border-color: var(--accent-orange);
+  background: linear-gradient(135deg, var(--bg-card), rgba(240, 136, 62, 0.05));
+}
+
+/* ============================================
+   INDIVIDUAL POST
+   ============================================ */
+.post-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.post-page .post-header {
+  margin-bottom: 40px;
+}
+
+.post-page .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.post-page .post-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.post-page .post-header .post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.post-page .post-header .post-tags span {
+  font-size: 0.78rem;
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.post-content {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.post-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 36px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 28px 0 12px;
+}
+
+.post-content p {
+  margin-bottom: 18px;
+}
+
+.post-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.post-content blockquote {
+  border-left: 3px solid var(--accent-orange);
+  padding: 16px 20px;
+  margin: 24px 0;
+  background: var(--bg-card);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.post-content ul, .post-content ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+.post-content li {
+  margin-bottom: 8px;
+}
+
+.post-content code {
+  font-family: var(--font-mono);
+  background: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  color: var(--accent-orange);
+}
+
+.post-content pre {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+.post-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.post-content th {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+.post-content td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+}
+.post-content tr:nth-child(even) td {
+  background: rgba(22, 27, 34, 0.4);
+}
+
+.post-nav {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+.post-nav a {
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.site-footer a { color: var(--text-secondary); }
+.site-footer a:hover { color: var(--accent-orange); }
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   HOME PAGE — 特色区域
+   ============================================ */
+.home-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.home-section .section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.home-section .section-title .title-bar {
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+  margin-left: 12px;
+}
+
+/* --- 设计理念快速展示 --- */
+.philosophy-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.phil-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all var(--transition);
+}
+.phil-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+.phil-card .icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.phil-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.phil-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .menu-toggle { display: block; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 12px;
+    gap: 4px;
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { width: 100%; padding: 10px 14px; }
+
+  .hero { padding: 48px 20px 36px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero-avatar { width: 80px; height: 80px; }
+
+  .post-card { padding: 20px; }
+  .post-card h2 { font-size: 1.15rem; }
+
+  .post-page .post-header h1 { font-size: 1.6rem; }
+  .post-content { font-size: 0.96rem; }
+
+  .game-list { grid-template-columns: 1fr; }
+  .philosophy-cards { grid-template-columns: 1fr; }
+
+  .page-header h1 { font-size: 1.6rem; }
+}
+
+/* ============================================
+   UTILITY — 过渡加载效果
+   ============================================ */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

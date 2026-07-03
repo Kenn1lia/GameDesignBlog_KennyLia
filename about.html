@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="关于我 — 游戏策划与 FPS/TPS 玩家">
+  <title>关于我 — Game Design Blog</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">
+        <span class="logo-icon">🎮</span>
+        GameDesign Blog
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">首页</a>
+        <a href="about.html" class="active">关于我</a>
+        <a href="blog.html">文章</a>
+        <a href="https://github.com/你的用户名" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ ABOUT CONTENT ============ -->
+  <div class="about-page fade-in">
+
+    <h1>👋 关于我</h1>
+
+    <!-- --- 个人介绍 --- -->
+    <section class="about-section">
+      <h2>🎯 自我介绍</h2>
+      <p>
+        你好！我是一名游戏策划，也是一名资深的 FPS / TPS 游戏玩家。
+      </p>
+      <p>
+        从少年时代第一次握住鼠标在《CS 1.6》的 dust2 里打出第一发子弹开始，我就深深迷上了射击游戏这个品类。二十多年来，我几乎玩遍了市面上主流的 FPS 和 TPS 作品——从竞技射击到战术渗透，从大逃杀到 PvE 合作，每一款游戏都像是一本打开的设计教科书。
+      </p>
+      <p>
+        这个博客是我记录设计思考的地方。我坚信<strong>「拆解是学习设计最好的方式」</strong>——通过分析优秀游戏的设计逻辑，理解其背后的设计哲学，然后沉淀成自己的方法论。
+      </p>
+      <p>
+        在这里，我会分享关于玩法设计、系统拆解、数值模型、用户体验等方面的思考。无论你是同样热爱射击游戏的玩家，还是正在学习游戏设计的新人策划，希望这里的文章能给你带来一些启发。
+      </p>
+    </section>
+
+    <!-- --- Me as a gamer --- -->
+    <section class="about-section">
+      <h2>🎮 我的游戏经历</h2>
+      <p>这些年玩过并深入研究过的射击游戏（部分）：</p>
+
+      <h3 style="color: var(--accent-orange); font-size: 1rem; margin: 16px 0 8px;">🔫 FPS</h3>
+      <ul class="game-list">
+        <li>
+          <span class="game-title">Counter-Strike 系列</span>
+          <span class="game-tag">竞技射击 · 从 1.6 到 CS2 · 千小时玩家</span>
+        </li>
+        <li>
+          <span class="game-title">Call of Duty 系列</span>
+          <span class="game-tag">快节奏竞技 · 战役设计 · 连杀奖励系统</span>
+        </li>
+        <li>
+          <span class="game-title">Battlefield 系列</span>
+          <span class="game-tag">大战场 · 载具协同 · 环境破坏</span>
+        </li>
+        <li>
+          <span class="game-title">Overwatch</span>
+          <span class="game-tag">英雄射击 · 技能设计 · 团队配合</span>
+        </li>
+        <li>
+          <span class="game-title">DOOM (2016) / Eternal</span>
+          <span class="game-tag">单人FPS巅峰 · 战斗节奏 · 资源循环设计</span>
+        </li>
+        <li>
+          <span class="game-title">Apex Legends</span>
+          <span class="game-tag">大逃杀 · 英雄技能 · 标记系统</span>
+        </li>
+        <li>
+          <span class="game-title">Rainbow Six Siege</span>
+          <span class="game-tag">战术CQB · 破坏机制 · 信息博弈</span>
+        </li>
+        <li>
+          <span class="game-title">Titanfall 2</span>
+          <span class="game-tag">单人战役天花板 · 铁驭操控 · 泰坦对战</span>
+        </li>
+      </ul>
+
+      <h3 style="color: var(--accent-cyan); font-size: 1rem; margin: 24px 0 8px;">🎯 TPS</h3>
+      <ul class="game-list">
+        <li>
+          <span class="game-title">Gears of War 系列</span>
+          <span class="game-tag">掩体射击开创者 · 电锯步枪 · 三人组队</span>
+        </li>
+        <li>
+          <span class="game-title">The Division 系列</span>
+          <span class="game-tag">RPG射击 · 掩体系统进化 · 暗区设计</span>
+        </li>
+        <li>
+          <span class="game-title">Resident Evil 4 / 6</span>
+          <span class="game-tag">越肩视角射击 · 体术系统 · 资源管理</span>
+        </li>
+        <li>
+          <span class="game-title">Warframe</span>
+          <span class="game-tag">高速TPS · 战甲设计 · 技能联动</span>
+        </li>
+        <li>
+          <span class="game-title">MGSV: The Phantom Pain</span>
+          <span class="game-tag">战术渗透 · 自由玩法 · 敌方AI设计</span>
+        </li>
+        <li>
+          <span class="game-title">Remnant 系列</span>
+          <span class="game-tag">魂系TPS · 随机地图 · Boss设计</span>
+        </li>
+      </ul>
+
+      <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);">
+        ⚡ 以上清单会持续更新——每一款游戏都是一本打开的设计教科书。
+      </p>
+    </section>
+
+    <!-- --- 工作方向 --- -->
+    <section class="about-section">
+      <h2>🛠️ 关注的设计方向</h2>
+      <ul class="game-list">
+        <li>
+          <span class="game-title">射击手感与战斗反馈</span>
+          <span class="game-tag">准星/后坐力/命中反馈/弹道系统的设计方法</span>
+        </li>
+        <li>
+          <span class="game-title">关卡与战斗空间设计</span>
+          <span class="game-tag">掩体布局/交战距离/垂直空间的战斗节奏</span>
+        </li>
+        <li>
+          <span class="game-title">RPG数值与射击结合</span>
+          <span class="game-tag">装备Build/伤害公式/TTK与TBD平衡</span>
+        </li>
+        <li>
+          <span class="game-title">多人模式与社交系统</span>
+          <span class="game-tag">匹配机制/组队体验/赛季内容规划</span>
+        </li>
+        <li>
+          <span class="game-title">单人战役叙事设计</span>
+          <span class="game-tag">关卡叙事/环境叙事/角色弧光</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- --- Contact --- -->
+    <section class="about-section">
+      <h2>📬 联系我</h2>
+      <p>
+        如果你对我的文章有任何想法，或者想交流游戏设计相关的话题，欢迎通过以下方式找到我：
+      </p>
+      <p style="margin-top: 8px;">
+        📧 Email：<a href="mailto:your-email@example.com">your-email@example.com</a><br>
+        🐙 GitHub：<a href="https://github.com/你的用户名" target="_blank">github.com/你的用户名</a>
+      </p>
+      <p style="margin-top: 16px; color: var(--text-muted); font-size: 0.9rem;">
+        ✏️ 如果你也是游戏从业者或爱好者，欢迎提 Issue 或 PR 交流！
+      </p>
+    </section>
+
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我</a>
+      <a href="blog.html">文章</a>
+      <a href="https://github.com/你的用户名" target="_blank">GitHub</a>
+    </div>
+    <p>© 2026 Game Design Blog · 用 ❤️ 和 🎮 驱动</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

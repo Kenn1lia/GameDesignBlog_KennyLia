@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="游戏策划的设计笔记 — FPS/TPS 游戏分析与设计思考">
+  <title>Game Design Blog — 游戏策划笔记</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">
+        <span class="logo-icon">🎮</span>
+        GameDesign Blog
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">☰</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="active">首页</a>
+        <a href="about.html">关于我</a>
+        <a href="blog.html">文章</a>
+        <a href="https://github.com/你的用户名" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero fade-in">
+    <div class="hero-avatar">🎯</div>
+    <h1>Game Design Notes</h1>
+    <p class="subtitle">
+      一个游戏策划的设计思考记录。<br>
+      专注于 FPS / TPS 玩法设计、系统拆解与用户体验分析。
+    </p>
+    <div class="badge-group">
+      <span class="badge fps">FPS</span>
+      <span class="badge tps">TPS</span>
+      <span class="badge design">玩法设计</span>
+      <span class="badge">系统拆解</span>
+      <span class="badge">数值设计</span>
+      <span class="badge">关卡分析</span>
+    </div>
+  </section>
+
+  <!-- ============ 设计理念 ============ -->
+  <section class="home-section fade-in">
+    <div class="section-title">
+      💡 我的设计信条
+      <span class="title-bar"></span>
+    </div>
+    <div class="philosophy-cards">
+      <div class="phil-card">
+        <div class="icon">🎯</div>
+        <h3>手感至上</h3>
+        <p>射击游戏的灵魂在于每一帧的手感反馈，从准星扩散到命中特效，细节决定沉浸感。</p>
+      </div>
+      <div class="phil-card">
+        <div class="icon">🧩</div>
+        <h3>系统联动</h3>
+        <p>好的设计不是孤立的机制堆砌，而是每个系统之间的化学反应，让 1+1 &gt; 2。</p>
+      </div>
+      <div class="phil-card">
+        <div class="icon">👁️</div>
+        <h3>玩家视角</h3>
+        <p>设计者容易陷入"我以为"的陷阱，真正的洞察来自于站在玩家角度体验每一个环节。</p>
+      </div>
+      <div class="phil-card">
+        <div class="icon">📖</div>
+        <h3>拆解与重建</h3>
+        <p>最好的学习方式是拆解优秀作品，理解其设计逻辑后，再创造出自己的方案。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 最新文章 ============ -->
+  <section class="home-section fade-in">
+    <div class="section-title">
+      📝 最新文章
+      <span class="title-bar"></span>
+    </div>
+
+    <div class="blog-grid" style="padding:0">
+
+      <article class="post-card featured">
+        <div class="post-meta">
+          <span class="post-date">2026 年 7 月 3 日</span>
+          <span class="post-category">设计方法论</span>
+        </div>
+        <h2><a href="posts/fps-combat-design-thinking.html">FPS 战斗设计思考：从射击手感说起</a></h2>
+        <p class="post-excerpt">
+          聊一聊 FPS 游戏中最核心也最容易被忽视的部分——射击手感。准星、后坐力、命中反馈、弹道系统…… 这些元素是如何共同构建出令人上瘾的射击体验的？
+        </p>
+        <div class="post-tags">
+          <span>FPS</span>
+          <span>战斗设计</span>
+          <span>手感</span>
+        </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-meta">
+          <span class="post-date">2026 年 7 月 1 日</span>
+          <span class="post-category">游戏分析</span>
+        </div>
+        <h2><a href="posts/tps-cover-system-analysis.html">TPS 掩体系统拆解：从 Gears of War 到 The Division</a></h2>
+        <p class="post-excerpt">
+          掩体系统是 TPS 的标志性设计元素。从 Gears of War 确立的掩体射击范式，到 The Division 的进化，掩体设计经历了怎样的演变？
+        </p>
+        <div class="post-tags">
+          <span>TPS</span>
+          <span>掩体系统</span>
+          <span>设计拆解</span>
+        </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-meta">
+          <span class="post-date">2026 年 6 月 28 日</span>
+          <span class="post-category">博客搭建</span>
+        </div>
+        <h2><a href="posts/hello-world.html">Hello World — 这个博客是关于什么的</a></h2>
+        <p class="post-excerpt">
+          第一篇博文，介绍一下这个博客的定位、我写文章的初衷，以及你未来会在这里看到什么样的内容。
+        </p>
+        <div class="post-tags">
+          <span>博客</span>
+          <span>开篇</span>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="text-align:center; margin-top: 24px;">
+      <a href="blog.html" style="
+        display: inline-block;
+        padding: 10px 28px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+      " onmouseover="this.style.borderColor='#f0883e';this.style.color='#f0883e'" onmouseout="this.style.borderColor='#30363d';this.style.color='#8b949e'">
+        查看全部文章 →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我</a>
+      <a href="blog.html">文章</a>
+      <a href="https://github.com/你的用户名" target="_blank">GitHub</a>
+    </div>
+    <p>© 2026 Game Design Blog · 用 ❤️ 和 🎮 驱动</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
