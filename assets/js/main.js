@@ -1,6 +1,6 @@
 /**
- * Game Design Blog — main.js
- * 导航菜单、页面交互
+ * Game Design Blog — main.js v2
+ * 导航菜单、滚动动画、阅读时间
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mainNav.classList.toggle('open');
     });
 
-    // 点击导航链接后关闭菜单
     mainNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mainNav.classList.remove('open');
@@ -22,56 +21,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============ 自动为文章页设置返回链接高亮 ============
+  // ============ Active nav highlighting ============
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.main-nav a');
-  navLinks.forEach(link => {
+  document.querySelectorAll('.main-nav a').forEach(link => {
     link.classList.remove('active');
-    if (link.getAttribute('href') === currentPath.split('/').pop()) {
+    const href = link.getAttribute('href');
+    if (href === currentPath.split('/').pop()) {
       link.classList.add('active');
     }
-    // 博文页面高亮"文章"导航
-    if (currentPath.includes('/posts/') && link.getAttribute('href').includes('blog.html')) {
+    if (currentPath.includes('/posts/') && href && href.includes('blog.html')) {
       link.classList.add('active');
     }
   });
 
-  // ============ 文章阅读时间估算（为 post-content 区域） ============
+  // ============ Reading time estimate ============
   const postContent = document.querySelector('.post-content');
   if (postContent) {
     const text = postContent.textContent || '';
-    // 中文阅读速度约 300 字/分钟
-    const chineseChars = text.match(/[一-鿿　-〿＀-￯]/g);
-    const wordCount = chineseChars ? chineseChars.length : 0;
-    const enWords = text.match(/[a-zA-Z]+/g);
-    const enCount = enWords ? enWords.length : 0;
-    const totalWords = wordCount + enCount;
+    const chineseChars = (text.match(/[一-鿿　-〿＀-￯]/g) || []).length;
+    const enWords = (text.match(/[a-zA-Z]+/g) || []).length;
+    const totalWords = chineseChars + enWords;
     const readingTime = Math.max(1, Math.ceil(totalWords / 300));
 
     const meta = document.querySelector('.post-header .post-meta');
     if (meta) {
       const timeBadge = document.createElement('span');
-      timeBadge.textContent = `· ☕ ${readingTime} 分钟阅读`;
-      timeBadge.style.color = 'var(--text-muted)';
+      timeBadge.className = 'reading-time';
+      timeBadge.textContent = `· ☕ ${readingTime} 分钟`;
       meta.appendChild(timeBadge);
     }
   }
 
-  // ============ 页面淡入动画 ============
-  const fadeElements = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationDelay = '0.1s';
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, { threshold: 0.1 });
+  // ============ Scroll reveal animation ============
+  const revealElements = document.querySelectorAll('.fade-in');
 
-  fadeElements.forEach(el => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  revealElements.forEach(el => {
     el.style.animationPlayState = 'paused';
     observer.observe(el);
   });
 
-  console.log(`🎮 Game Design Blog loaded · ${new Date().toLocaleDateString('zh-CN')}`);
+  // ============ Navbar transparency on scroll ============
+  const header = document.querySelector('.site-header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > 80) {
+      header.style.borderColor = 'rgba(30, 45, 68, 0.8)';
+      header.style.background = 'rgba(11, 20, 34, 0.92)';
+    } else {
+      header.style.borderColor = 'var(--border-dark)';
+      header.style.background = 'rgba(11, 20, 34, 0.85)';
+    }
+    lastScroll = currentScroll;
+  });
+
+  console.log(`🎮 Game Design Blog · ${new Date().toLocaleDateString('zh-CN')}`);
 });

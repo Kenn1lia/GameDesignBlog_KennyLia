@@ -1,79 +1,63 @@
-# 🎮 Game Design Blog
+# KennyLia Game Design Blog
 
-> 一个游戏策划的设计思考记录。
-> 专注于 FPS / TPS 玩法设计、系统拆解与用户体验分析。
+> 建筑学背景 × 游戏关卡策划 | FPS/TPS 设计笔记
 
-这是一个基于纯静态 HTML/CSS/JS 搭建的个人博客站点，无需构建工具，浏览器直接打开即可预览。使用 GitHub Pages 发布。
+---
 
-## ✨ 特性
+一个游戏策划的个人博客，专注射击游戏的**关卡设计、玩法设计、系统拆解与游玩体验分析**。
 
-- 暗色游戏主题设计，响应式布局
-- 纯静态页面，无需后端或构建工具
-- 完美适配 GitHub Pages 部署
-- 中文阅读体验优先，FPS/TPS 游戏设计内容垂直
+基于纯静态 HTML/CSS/JS 搭建，无需构建工具，浏览器打开即看。
 
-## 📂 目录结构
+## 本地预览
+
+```bash
+python -m http.server 8000
+```
+
+浏览器打开 **http://localhost:8000**
+
+## 站点内容
+
+| 页面 | 说明 |
+|------|------|
+| [首页](index.html) | 个人设计理念 + 最新文章 |
+| [关于我](about.html) | 简历、游戏经历（6839H）、设计方向 |
+| [文章](blog.html) | FPS/TPS 深度分析文章 |
+
+### 文章列表
+
+- [FPS 战斗设计思考：从射击手感说起](posts/fps-combat-design-thinking.html)
+- [TPS 掩体系统拆解：从 Gears of War 到 The Division](posts/tps-cover-system-analysis.html)
+- [Hello World — 这个博客是关于什么的](posts/hello-world.html)
+
+## 目录结构
 
 ```
-GameDesignBlog/
-├── index.html           # 首页
-├── about.html           # 关于我
-├── blog.html            # 文章列表
-├── posts/               # 博客文章
+├── index.html              # 首页
+├── about.html              # 关于我（简历 + 游戏数据）
+├── blog.html               # 文章列表
+├── posts/                  # 文章
 │   ├── hello-world.html
 │   ├── fps-combat-design-thinking.html
 │   └── tps-cover-system-analysis.html
 ├── assets/
-│   ├── css/
-│   │   └── style.css    # 主题样式
-│   ├── js/
-│   │   └── main.js      # 交互脚本
-│   └── images/          # 图片资源
-├── README.md
-└── .gitignore
+│   ├── css/style.css       # 主题样式（深蓝 + 米白）
+│   └── js/main.js          # 交互脚本
+└── README.md
 ```
 
-## 🚀 本地预览
+## 设计参考
 
-### 方式一：直接打开（最简单）
+- Marathon（数字艺术感文字）
+- Arc Raiders（深蓝 + 米白色调）
+- Massive / Battlefield 6（卡片网格 + 固定导航）
+- Gears of War / The Division（布局结构）
 
-双击 `index.html` 即可在浏览器中查看。
+## 关于作者
 
-### 方式二：Python 服务器（推荐，能正常加载所有资源）
-
-```bash
-# 在项目目录下执行
-python -m http.server 8000
-```
-
-然后访问 http://localhost:8000
-
-## 📦 发布到 GitHub Pages
-
-1. 在 GitHub 新建仓库，命名为 `你的用户名.github.io`
-2. 将本目录所有文件推送到该仓库的 `main` 分支
-3. 在仓库 Settings → Pages 中，Source 选择 `Deploy from a branch`，分支选 `main`，根目录选 `/ (root)`
-4. 等待几分钟，访问 `https://你的用户名.github.io`
-
-## ✏️ 如何添加新文章
-
-1. 在 `posts/` 目录下创建新的 HTML 文件
-2. 复制已有文章的 HTML 结构，替换标题、日期、正文内容
-3. 在 `blog.html` 的文章列表中添加新文章的链接
-4. 如果想在首页展示，也在 `index.html` 的"最新文章"区域添加
-
-## 📝 写作规范
-
-- 每篇文章包含 header 区的 meta 信息（标题、日期、分类、标签）
-- 标签统一用小写英文
-- 分类目前有：`设计方法论` / `游戏分析` / `数值设计` / `博客搭建`
-- 图片放到 `assets/images/` 目录
-
-## 🔗 链接
-
-- [关于我](about.html)
-- [全部文章](blog.html)
+**KennyLia** — 哈工大深圳建筑学硕士在读 · 广美建筑学学士 · 期望关卡策划岗位（FPS/TPS）。  
+Steam 总时长 6839H，深度 FPS/TPS 玩家，写过代码、画过图纸、打过几千小时射击游戏。
 
 ---
 
-*用 ❤️ 和 🎮 驱动*
+*从建筑空间到关卡空间 · 设计让人沉浸的体验*
