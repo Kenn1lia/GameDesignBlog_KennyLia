@@ -1,0 +1,1079 @@
+/* ============================================
+   Game Design Blog — v2 策划品牌主题
+   融合参考：Marathon / Arc Raiders / Massive / BF6
+   ============================================ */
+
+/* --- Google Fonts 引入 --- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* --- Design Tokens / 设计变量 --- */
+:root {
+  /* ▸ Arc Raiders 深蓝主色 */
+  --navy-950: #070D17;
+  --navy-900: #0B1422;
+  --navy-800: #111E30;
+  --navy-700: #18283F;
+  --navy-600: #1F3350;
+
+  /* ▸ Arc Raiders 米白 */
+  --cream-50: #FAF6F0;
+  --cream-100: #F5EDE0;
+  --cream-200: #EDE0CC;
+  --cream-300: #E0CDB0;
+
+  /* ▸ FPS 橙色系 */
+  --orange-600: #C96D2E;
+  --orange-500: #D97D3D;
+  --orange-400: #E8924F;
+  --orange-300: #F2A86A;
+  --orange-glow: rgba(217, 125, 61, 0.25);
+
+  /* ▸ TPS 蓝色辅助 */
+  --blue-500: #3B82F6;
+  --blue-400: #4A8FE4;
+  --blue-300: #6BA4F0;
+
+  /* ▸ 文字色 */
+  --text-primary: #E2E6EB;
+  --text-secondary: #8B95A5;
+  --text-muted: #5A6577;
+  --text-on-cream: #1A253A;
+
+  /* ▸ 边框 */
+  --border-dark: #1E2D44;
+  --border-card: #1A2A3F;
+  --border-hover: #2A4060;
+
+  /* ▸ 字体 */
+  --font-heading: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+
+  /* ▸ 尺寸 */
+  --max-width: 960px;
+  --max-width-wide: 1200px;
+  --header-height: 68px;
+  --transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--navy-900);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--orange-glow);
+  color: var(--cream-50);
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy-950); }
+::-webkit-scrollbar-thumb { background: var(--navy-700); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--navy-600); }
+
+/* ============================================
+   HEADER — 固定导航栏（BF6 / Division2 风格）
+   ============================================ */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background: rgba(11, 20, 34, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-dark);
+  transition: border-color var(--transition);
+}
+
+.header-inner {
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Logo (Marathon 数字艺术感) --- */
+.site-logo {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cream-100);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.3px;
+  transition: color var(--transition);
+  position: relative;
+}
+.site-logo:hover { color: var(--orange-400); }
+
+/* "GameDesign" 的编程感点缀 */
+.logo-mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.03);
+}
+
+.logo-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--orange-500);
+  border-radius: 1px;
+  display: inline-block;
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* --- Navigation --- */
+.main-nav { display: flex; align-items: center; gap: 4px; }
+
+.main-nav a {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all var(--transition);
+  letter-spacing: 0.2px;
+  position: relative;
+}
+
+.main-nav a:hover {
+  color: var(--cream-100);
+  background: rgba(255,255,255,0.04);
+}
+
+.main-nav a.active {
+  color: var(--orange-400);
+  background: rgba(217, 125, 61, 0.08);
+}
+
+/* --- Marathon 风格：导航栏底部的滑动指示条 --- */
+.main-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: var(--orange-500);
+  border-radius: 1px;
+}
+
+/* Mobile menu */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-dark);
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  transition: all var(--transition);
+}
+.menu-toggle:hover {
+  border-color: var(--orange-500);
+  color: var(--orange-400);
+}
+
+/* ============================================
+   HERO — 全幅大标题（BF6 / Division2 风格）
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--header-height) + 40px) 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景：深蓝到墨色的渐变 + 几何纹理 */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(217, 125, 61, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(74, 143, 228, 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 100%);
+  pointer-events: none;
+}
+
+/* Marathon 风格：几何网格线 */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 125, 61, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 125, 61, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.hero .hero-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--orange-400);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--orange-glow);
+  border-radius: 4px;
+  background: rgba(217, 125, 61, 0.06);
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+  color: var(--cream-100);
+}
+
+/* Marathon glitch 效果：标题中的代码感点缀 */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-text:hover::before {
+  color: var(--orange-400);
+  opacity: 0.4;
+  transform: translate(-2px, 1px);
+  animation: glitch-1 0.3s ease;
+}
+
+.glitch-text:hover::after {
+  color: var(--blue-400);
+  opacity: 0.3;
+  transform: translate(2px, -1px);
+  animation: glitch-2 0.3s ease;
+}
+
+@keyframes glitch-1 {
+  0% { clip-path: inset(40% 0 30% 0); }
+  20% { clip-path: inset(10% 0 60% 0); }
+  40% { clip-path: inset(60% 0 20% 0); }
+  60% { clip-path: inset(20% 0 50% 0); }
+  80% { clip-path: inset(50% 0 30% 0); }
+  100% { clip-path: inset(30% 0 40% 0); }
+}
+
+@keyframes glitch-2 {
+  0% { clip-path: inset(20% 0 60% 0); }
+  20% { clip-path: inset(50% 0 20% 0); }
+  40% { clip-path: inset(30% 0 40% 0); }
+  60% { clip-path: inset(60% 0 10% 0); }
+  80% { clip-path: inset(10% 0 70% 0); }
+  100% { clip-path: inset(40% 0 30% 0); }
+}
+
+.hero .subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 32px;
+  font-weight: 400;
+}
+
+/* Hero 标签组 */
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 5px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border-dark);
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.02);
+  letter-spacing: 0.5px;
+  transition: all var(--transition);
+}
+.hero-tag:hover {
+  border-color: var(--orange-400);
+  color: var(--orange-300);
+  background: rgba(217, 125, 61, 0.06);
+}
+
+/* ============================================
+   SECTION TITLES
+   ============================================ */
+.section-header {
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cream-100);
+  white-space: nowrap;
+  letter-spacing: -0.3px;
+}
+
+.section-header .section-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.section-header .section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-dark) 0%, transparent 100%);
+}
+
+/* ============================================
+   DESIGN PHILOSOPHY — 设计信条卡片
+   ============================================ */
+.philosophy-grid {
+  max-width: var(--max-width-wide);
+  margin: 0 auto 60px;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.phil-card {
+  background: rgba(17, 30, 48, 0.5);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 28px 24px;
+  backdrop-filter: blur(4px);
+  transition: all var(--transition-bounce);
+  cursor: default;
+}
+
+/* Massive 风格的悬停效果：弹跳 + 变色 */
+.phil-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--orange-400);
+  background: rgba(17, 30, 48, 0.8);
+  box-shadow: 0 12px 40px rgba(217, 125, 61, 0.08);
+}
+
+.phil-card .icon {
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+  display: block;
+  opacity: 0.8;
+}
+
+.phil-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream-100);
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+
+.phil-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   BLOG CARDS — Massive 网格布局
+   ============================================ */
+.blog-section {
+  max-width: var(--max-width-wide);
+  margin: 0 auto 60px;
+  padding: 0 32px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.post-card {
+  background: var(--navy-800);
+  border: 1px solid var(--border-card);
+  border-radius: 14px;
+  padding: 32px;
+  transition: all var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 装饰线 — 数字艺术感 */
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--orange-500) 30%,
+    var(--blue-400) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.post-card.featured {
+  border-color: rgba(217, 125, 61, 0.2);
+  background: linear-gradient(135deg, var(--navy-800) 0%, rgba(217, 125, 61, 0.04) 100%);
+}
+
+.post-card.featured::before {
+  opacity: 0.4;
+}
+
+/* Massive 悬停效果 */
+.post-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-hover);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.post-card:hover::before {
+  opacity: 1;
+}
+
+/* 分类标签 */
+.post-card .post-category {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--orange-400);
+  margin-bottom: 14px;
+  display: inline-block;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(217, 125, 61, 0.2);
+}
+
+.post-card .post-date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  display: block;
+  font-family: var(--font-mono);
+}
+
+.post-card h2 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.post-card h2 a {
+  color: var(--cream-100);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.post-card h2 a:hover { color: var(--orange-400); }
+
+.post-card .post-excerpt {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.post-card .post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.post-card .post-tags span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border-dark);
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.02);
+  transition: all var(--transition);
+}
+
+.post-card:hover .post-tags span {
+  border-color: var(--border-hover);
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   CREAM SECTION — Arc Raiders 米白段落
+   ============================================ */
+.cream-section {
+  background: var(--cream-50);
+  color: var(--text-on-cream);
+  padding: 80px 0;
+}
+
+.cream-section .section-header h2 {
+  color: var(--text-on-cream);
+}
+
+.cream-section .section-header .section-line {
+  background: linear-gradient(90deg, rgba(26, 37, 58, 0.15) 0%, transparent 100%);
+}
+
+/* 在米白背景下的卡片变体 */
+.cream-section .post-card {
+  background: #FFFFFF;
+  border-color: var(--cream-200);
+}
+.cream-section .post-card::before {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--orange-400) 30%,
+    var(--blue-400) 70%,
+    transparent 100%
+  );
+}
+.cream-section .post-card h2 a { color: var(--text-on-cream); }
+.cream-section .post-card .post-excerpt { color: #5A6577; }
+.cream-section .post-card .post-category { color: var(--orange-600); }
+
+/* ============================================
+   INDIVIDUAL POST
+   ============================================ */
+.post-page {
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217, 125, 61, 0.03) 0%, transparent 70%),
+    var(--navy-900);
+}
+
+.post-page .post-header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.post-page .post-header .post-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.post-page .post-header .post-meta .reading-time {
+  color: var(--text-muted);
+}
+
+.post-page .post-header h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  line-height: 1.25;
+  color: var(--cream-100);
+  margin-bottom: 20px;
+}
+
+.post-page .post-header .post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.post-page .post-header .post-tags span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-dark);
+  color: var(--text-muted);
+}
+
+/* --- Post Content --- */
+.post-content {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.post-content h2 {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--cream-100);
+  margin: 40px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-dark);
+  letter-spacing: -0.3px;
+}
+
+.post-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cream-100);
+  margin: 30px 0 14px;
+}
+
+.post-content p { margin-bottom: 20px; }
+.post-content strong { color: var(--cream-100); font-weight: 600; }
+
+.post-content a {
+  color: var(--orange-400);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(217, 125, 61, 0.3);
+  transition: all var(--transition);
+}
+.post-content a:hover {
+  color: var(--orange-300);
+  text-decoration-color: var(--orange-400);
+}
+
+.post-content blockquote {
+  border-left: 2px solid var(--orange-500);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: rgba(217, 125, 61, 0.04);
+  border-radius: 0 10px 10px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.98rem;
+}
+
+.post-content ul, .post-content ol {
+  margin: 20px 0;
+  padding-left: 24px;
+}
+.post-content li { margin-bottom: 8px; }
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-dark);
+  display: block;
+  margin: 32px auto;
+  transition: opacity 0.4s ease;
+}
+
+.post-content figure {
+  margin: 32px 0;
+  text-align: center;
+}
+
+.post-content figure img {
+  margin: 0 auto;
+}
+
+.post-content figcaption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+}
+
+.post-content code {
+  font-family: var(--font-mono);
+  background: rgba(255,255,255,0.04);
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--orange-300);
+  border: 1px solid var(--border-dark);
+}
+
+.post-content pre {
+  background: var(--navy-950);
+  border: 1px solid var(--border-dark);
+  border-radius: 10px;
+  padding: 24px;
+  overflow-x: auto;
+  margin: 28px 0;
+  font-size: 0.9rem;
+}
+.post-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 0.93rem;
+  border: 1px solid var(--border-dark);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post-content th {
+  background: var(--navy-800);
+  color: var(--cream-100);
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.post-content td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.post-content tr:last-child td {
+  border-bottom: none;
+}
+
+.post-content tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+/* --- Post Nav --- */
+.post-nav {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-nav a {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  transition: all var(--transition);
+}
+
+.post-nav a:hover {
+  border-color: var(--orange-400);
+  color: var(--orange-400);
+  background: rgba(217, 125, 61, 0.04);
+}
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-page {
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  min-height: 100vh;
+}
+
+.about-page h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--cream-100);
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.about-section {
+  margin-bottom: 48px;
+}
+
+.about-section h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--orange-400);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-section p {
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+/* Game list grid */
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  list-style: none;
+  min-width: 0;
+}
+
+.game-list li {
+  background: var(--navy-800);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 18px;
+  transition: all var(--transition-bounce);
+  min-width: 0;
+}
+
+.game-list li:hover {
+  transform: translateY(-3px);
+  border-color: var(--orange-400);
+  background: rgba(217, 125, 61, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.game-list .game-title {
+  font-weight: 600;
+  color: var(--cream-100);
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.game-list .game-tag {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ============================================
+   BLOG LIST PAGE
+   ============================================ */
+.page-header {
+  padding-top: calc(var(--header-height) + 40px);
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 8px;
+}
+
+.page-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cream-100);
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.page-header .page-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.page-mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  max-width: var(--max-width-wide);
+  margin: 20px auto 16px;
+  padding: 0 32px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  border-top: 1px solid var(--border-dark);
+  padding: 40px 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.site-footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.site-footer a:hover { color: var(--orange-400); }
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  font-size: 0.88rem;
+}
+
+.footer-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .header-inner { padding: 0 20px; }
+  .site-logo { font-size: 1rem; }
+  .logo-mono { display: none; }
+
+  .menu-toggle { display: block; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px;
+    background: rgba(11, 20, 34, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { width: 100%; padding: 12px 16px; }
+  .main-nav a.active::after { display: none; }
+
+  .hero { min-height: 80vh; padding-top: calc(var(--header-height) + 20px); padding-bottom: 40px; }
+  .hero .hero-badge { font-size: 0.65rem; margin-bottom: 20px; }
+
+  .blog-grid { grid-template-columns: 1fr; }
+  .post-card { padding: 24px; }
+  .post-card h2 { font-size: 1.1rem; }
+
+  .philosophy-grid { grid-template-columns: 1fr; }
+
+  .about-page { padding-left: 20px; padding-right: 20px; }
+  .post-page { padding-left: 20px; padding-right: 20px; }
+  .page-header { padding-left: 20px; padding-right: 20px; }
+  .blog-section { padding: 0 20px; }
+  .section-header { padding: 0 20px; flex-wrap: wrap; }
+
+  .game-list { grid-template-columns: 1fr; }
+
+  .post-nav { flex-direction: column; gap: 12px; }
+
+  .site-footer { padding: 32px 20px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 滚动进入动画 */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

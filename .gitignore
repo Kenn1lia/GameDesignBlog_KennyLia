@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python http server cache
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# 草稿中转区（不提交未发布的草稿）
+_inbox/
+
+# 参考素材（不提交到仓库）
+assets/images/_reference/

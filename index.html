@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="游戏策划的设计笔记 — FPS/TPS 游戏分析与设计思考">
+  <title>Game Design Blog — 游戏策划笔记</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============ 固定导航栏 (BF6/Division2 风格) ============ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">
+        <span class="logo-mono">KL</span>
+        <span>KennyLiaStudio</span>
+        <span class="logo-dot"></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="菜单">≡</button>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="active">首页</a>
+        <a href="about.html">关于我</a>
+        <a href="blog.html">文章</a>
+        <a href="https://github.com/Kenn1lia/GameDesignBlog_KennyLia" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO — 全幅大标题 ============ -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <span class="hero-badge">My game design notes</span>
+      <h1>
+        <span class="glitch-text" data-text="设计-思考-记录">设计-思考-记录</span>
+        <br>从 <span style="color:var(--orange-400)">FPS</span> 与 <span style="color:var(--blue-400)">TPS</span> 出发
+      </h1>
+      <p class="subtitle">
+        一个游戏策划的设计笔记。<br>
+        专注设计游戏的关卡设计、玩法设计、系统拆解与游玩体验分析。
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">#FPS</span>
+        <span class="hero-tag">#TPS</span>
+        <span class="hero-tag">#玩法设计</span>
+        <span class="hero-tag">#系统拆解</span>
+        <span class="hero-tag">#关卡设计</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 设计信条 ============ -->
+  <section>
+    <div class="section-header fade-in">
+      <h2>设计信条</h2>
+      <span class="section-mono">/ philosophy</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="philosophy-grid fade-in">
+      <div class="phil-card">
+        <h3>射击体验至上</h3>
+        <p>射击游戏灵魂在于开枪-命中反馈的射击循环，决定了射击游戏整体的游玩体验，也决定一款射击游戏的上线</p>
+      </div>
+      <div class="phil-card">
+        <h3>系统联动</h3>
+        <p>优秀的游戏系统设计不是生硬地拼接，而是让系统之间产生联动的化学反应，让1+1大于2</p>
+      </div>
+      <div class="phil-card">
+        <h3>玩家-设计双视角</h3>
+        <p>游戏设计需要不断切换设计师和玩家的视角审视游戏，洞察评估游戏设计的每一个细节</p>
+      </div>
+      <div class="phil-card">
+        <h3>拆解与重建</h3>
+        <p>最好的学习方法是拆解优秀作品，理解掌握底层逻辑后，再创造自己的方案</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 最新文章 (Cream 段落 — Arc Raiders 米白风格) ============ -->
+  <section class="cream-section">
+    <div class="section-header fade-in">
+      <h2>最新文章</h2>
+      <span class="section-mono">/ latest posts</span>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="blog-section fade-in" style="padding-top:0;">
+
+      <div class="blog-grid" style="margin-bottom:32px;">
+
+        <article class="post-card featured">
+          <span class="post-category">博客</span>
+          <span class="post-date">2026.07.13</span>
+          <h2><a href="posts/hello-world.html">Hello World — 关于这篇博客会分享和更新什么？</a></h2>
+          <p class="post-excerpt">
+            关于这篇博客会分享和更新什么？一个初入游戏行业的小策划的博客开篇。
+          </p>
+          <div class="post-tags">
+            <span>博客</span>
+            <span>开篇</span>
+            <span>游戏设计</span>
+          </div>
+        </article>
+
+      </div>
+
+      <div style="text-align:center;">
+        <a href="blog.html" style="
+          display: inline-block;
+          padding: 12px 32px;
+          border: 1px solid var(--cream-200);
+          border-radius: 10px;
+          color: var(--text-on-cream);
+          font-size: 0.88rem;
+          font-family: var(--font-mono);
+          letter-spacing: 0.5px;
+          text-decoration: none;
+          transition: all 0.25s ease;
+        " onmouseover="this.style.borderColor='var(--orange-500)';this.style.color='var(--orange-600)'" onmouseout="this.style.borderColor='var(--cream-200)';this.style.color='var(--text-on-cream)'">
+          → 查看全部文章
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我</a>
+      <a href="blog.html">文章</a>
+      <a href="https://github.com/Kenn1lia/GameDesignBlog_KennyLia" target="_blank">GitHub</a>
+    </div>
+    <p class="footer-mono">© 2026 · KennyLia Game Design Blog</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
